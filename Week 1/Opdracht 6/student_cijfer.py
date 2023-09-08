@@ -1,0 +1,5 @@
+print("Wat is uw naam?")
+naam = input()
+print("Wat voor cijfer denkt u te halen voor dit vak?")
+cijfer = input()
+print(naam, cijfer)
