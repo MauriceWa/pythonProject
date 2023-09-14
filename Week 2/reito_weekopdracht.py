@@ -28,7 +28,7 @@ def main():
       print('"' + nieuwe_term + ': ' + nieuwe_term_betekenis + '" was added to the dictionary.''\n')
 
     elif keuze_menu == 3:
-      print("The program will close.")
+      print('\n'+"The program will close.")
       life = False
 
 if __name__ == '__main__':
