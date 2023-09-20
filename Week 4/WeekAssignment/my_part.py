@@ -13,4 +13,5 @@ def filter_genre():
 user_two = input("Do you want to filter on another genre?")
 
 
+
 # user input, list with genres, return genres that user wanted
