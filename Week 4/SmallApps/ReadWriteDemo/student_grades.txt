@@ -1,0 +1,5 @@
+Toby, 8.0
+Charlotte, 10.0
+Tony, 8.0
+Youp, 5.5
+Luuk, 6.0
