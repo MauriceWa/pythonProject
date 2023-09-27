@@ -1,0 +1,3 @@
+pim, [maandag,dinsdag,vrijdag]
+maurice, [woensdag,zaterdag,vrijdag]
+corrine, [maandag,donderdag,vrijdag]

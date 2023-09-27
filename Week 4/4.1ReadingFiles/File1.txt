@@ -1,2 +1,4 @@
 Hello world
 This is an example file
+Third line for fun
+Fourth line for Star Wars
