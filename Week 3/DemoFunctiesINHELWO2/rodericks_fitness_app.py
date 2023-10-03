@@ -36,8 +36,8 @@ def main():
   app_running = True
 
 
-  while app_running:
-  if choice == 1:
+#  while app_running:
+ # if choice == 1:
 
   # hartslag alleen vragen in voor de formule van karvonen
   if __name__ == "__main__":
