@@ -1,0 +1,2 @@
+titel;artiest;aantal_keer_geluisterd;aantal_keer_overgeslagen;liked;duur
+Smells Like Teen Spirit;Nirvana;102;5;ja;251
