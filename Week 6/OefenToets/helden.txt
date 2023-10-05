@@ -1,0 +1,4 @@
+Naam;kracht;verdediging;aanvallen;beschrijving
+Legolas;7;5;2;Legolas zoon van Thranduil uit Mirkwood
+Gimli;5;8;3;Gimli zoon van Glion uit de Lonly Mountain
+Aragorn;8;6;3;Aragorn zoon van Arathorn, dwaler uit het noorden

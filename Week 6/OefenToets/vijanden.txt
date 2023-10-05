@@ -1,0 +1,4 @@
+Naam;kracht;verdediging;aanvallen;verliest_tegen
+Lurtz;5;5;2;Aragorn
+Witch King;7;5;2;Legolas
+Cave Troll;10;8;3;Gimli
