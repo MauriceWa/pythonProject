@@ -7,17 +7,17 @@ def plan_route(location_a, location_b, route_list):
     for route in route_list:
         if route["Location a"] == location_a and route["Location b"] == location_b:
             found_route = True
+            write_route_away(location_a, location_b, route['duration'])
             print(f"Found a route between{location_a} and {location_b}:")
             print(f"The duration is {route['duration']}")
-
-        if not found_route:
-            print(f"No route found from {location_a} towards {location_b} ")
-
-    return found_route
+            return found_route
+    print(f"No route found from {location_a} towards {location_b} ")
 
 
-def write_route_away(route_data):
-    print("appel")
+
+def write_route_away(location_a,location_b,duration):
+    with open("ns_logs_data.txt", "a") as file:
+        file.write(location_a+";"+location_b+";"+duration+'\n')
 
 
 def show_routes(route_list):

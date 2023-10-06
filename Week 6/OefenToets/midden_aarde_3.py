@@ -2,79 +2,55 @@ vijanden = []
 
 
 def lees_helden_uit_bestand():
-    with open("helden.txt").read().splitlines() as bestand:
-        
-
+    with open("helden.txt") as bestand:
+        helden_lijst = []
+        data = bestand.readlines()
+        for held in bestand:
+            held.strip().split(";")
+            dict = {
+                "naam":held[0],
+                "kracht":held[1],
+                "verdediging":held[2],
+                "aanvallen":held[3],
+                "beschrijving":held[4]
+            }
+            helden_lijst.append(dict)
+    return helden_lijst
 
 def lees_vijanden_uit_bestand():
-    bestand = open("vijanden.txt", "r")
+    with open("helden.txt") as bestand:
+        vijanden_lijst = []
+        data = bestand.readlines()
+        for vijand in bestand:
+            vijand.strip().split(";")
+            dict = {
+                "naam":vijand[0],
+                "kracht":vijand[1],
+                "verdediging":vijand[2],
+                "aanvallen":vijand[3],
+                "beschrijving":vijand[4]
+            }
+            vijanden_lijst.append(dict)
+    return vijanden_lijst
+def toon_held_informatie(held):
 
-    lurtz = {"Naam":"Lurtz"}, \
-                  {"kracht":"5"},\
-                  {"verdediging":"5"},\
-                  {"aanvallen":"2"},\
-                  {"verlist tegen":"Aragorn"}
+def strijd(held, vijanden):
 
-    witch_king = {"Naam":"Witch King"}, \
-                  {"kracht":"7"},\
-                  {"verdediging":"5"},\
-                  {"aanvallen":"2"},\
-                  {"verlist tegen":"Legolas"}
-
-    cave_troll = {"Naam":"Cave Troll"}, \
-                  {"kracht":"10"},\
-                  {"verdediging":"8"},\
-                  {"aanvallen":"3"},\
-                  {"verlist tegen":"Gimli"}
-    vijanden =[lurtz,witch_king,cave_troll]
-    print(vijanden)
-    bestand.close()
-def toon_held_informatie(Aragorn):
-    Aragorn = {"Naam":"Aragorn"}, \
-                  {"kracht":"8"},\
-                  {"verdediging":"6"},\
-                  {"aanvallen":"3"},\
-                  {"beschrijving":"Aragorn zoon van Arathorn, dwaler uit het noorden"}
-    print(Aragorn)
-
-def strijd():
-    Aragorn = {"Naam": "Aragorn"}, \
-              {"kracht": "8"}, \
-              {"verdediging": "6"}, \
-              {"aanvallen": "3"}, \
-              {"beschrijving": "Aragorn zoon van Arathorn, dwaler uit het noorden"}
-
-    lurtz = {"Naam":"Lurtz"}, \
-                  {"kracht":"5"},\
-                  {"verdediging":"5"},\
-                  {"aanvallen":"2"},\
-                  {"verlist tegen":"Aragorn"}
-
-    witch_king = {"Naam":"Witch King"}, \
-                  {"kracht":"7"},\
-                  {"verdediging":"5"},\
-                  {"aanvallen":"2"},\
-                  {"verlist tegen":"Legolas"}
-
-    cave_troll = {"Naam":"Cave Troll"}, \
-                  {"kracht":"10"},\
-                  {"verdediging":"8"},\
-                  {"aanvallen":"3"},\
-                  {"verlist tegen":"Gimli"}
-    vijanden =[lurtz, witch_king, cave_troll]
-    for held in Aragorn:
-        held_score = print(Aragorn["kracht"])
 
 def main():
     program = True
+    helden = lees_helden_uit_bestand()
+    vijanden = lees_vijanden_uit_bestand()
+
     print("Welkom bij het gevecht in Middel Aarde, kies je strijder:"+ "\n" "1. Legolas" + "\n" + "2. Gimli"
            + "\n" + "3. Aragorn" + "\n")
     keuze = int(input())
     if keuze == 1:
+        held1 = helden[0]
         print("Wil je meer informatie over jouw gekozen held? Type ja of nee" + "\n")
         tweede_keuze = input()
         if tweede_keuze == "ja":
-            print(toon_held_informatie(1))
+            print(toon_held_informatie(held1))
         else:
             print("Het gevecht van goed gaat beginnen...")
     if keuze == 2:
