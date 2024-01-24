@@ -11,7 +11,10 @@ led_pins = {'white1': 4, 'white2': 17, 'blue1': 27, 'blue2': 5,
 button_pin = 23
 buzzer_pin = 21
 start_button_pin = 18
+questions_limit = 5
+questions_answered = 0
 
+morse_code_pins = [pin for pin in led_pins.values() if pin not in [12, 25, 24]]
 
 GPIO.setmode(GPIO.BCM)
 
@@ -25,6 +28,8 @@ GPIO.setup(start_button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 morse_code = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
               'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
               }
+morse_numbers = {'1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+                 '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----'}
 
 
 def generate_pronounceable_sequence(length=5):
@@ -35,8 +40,13 @@ def generate_pronounceable_sequence(length=5):
         sequence += random.choice(consonants) if i % 2 == 0 else random.choice(vowels)
     return sequence
 
+def display_number_in_morse(number):
+    for digit in '69':
+        if digit in morse_numbers:
+            flash_morse(morse_numbers[digit])
 
-def flash_morse(code, led_pin):
+def flash_morse(code):
+    led_pin = random.choice(morse_code_pins)
     for symbol in code:
         GPIO.output(led_pin, GPIO.HIGH)
         time.sleep(0.2 if symbol == '.' else 0.5)
@@ -49,7 +59,6 @@ def play_buzzer(duration):
     GPIO.output(buzzer_pin, GPIO.HIGH)
     time.sleep(duration)
     GPIO.output(buzzer_pin, GPIO.LOW)
-
 
 def count_button_presses(timeout=5):
     count = 0
@@ -79,12 +88,13 @@ def game_round():
     word = generate_pronounceable_sequence()
     for char in word.upper():
         if char in morse_code:
-            flash_morse(morse_code[char], led_pins['yellow2'])
+            flash_morse(morse_code[char])
             validate_guess(morse_code[char].count('.') + morse_code[char].count('-'))
 
 
 
 def blink_indicator():
+    global game_running
     while game_running:
         GPIO.output(led_pins['yellow_indicator'], GPIO.HIGH)
         time.sleep(0.3)
@@ -103,10 +113,29 @@ try:
             indicator_thread.start()
             while game_running and time.time() - start_time < 120:
                 game_round()
-                time.sleep(2)
+                time.sleep(4)
+                questions_answered += 1
+
+                if questions_answered == questions_limit:
+                    display_number_in_morse('69')
+                    time.sleep(5)
+                    GPIO.output(led_pins['green2'], GPIO.HIGH)
+                    GPIO.output(led_pins['yellow2'], GPIO.HIGH)
+                    GPIO.output(led_pins['red2'], GPIO.HIGH)
+                    time.sleep(5)
+                    GPIO.output(led_pins['green2'], GPIO.LOW)
+                    GPIO.output(led_pins['yellow2'], GPIO.LOW)
+                    GPIO.output(led_pins['red2'], GPIO.LOW)
+                    questions_answered = 0
+                    break
+
             game_running = False
             if indicator_thread is not None:
                 indicator_thread.join()
+
+            display_number_in_morse('69')
+            time.sleep(5)
+
             GPIO.output(led_pins['green_indicator'], GPIO.HIGH)
             time.sleep(1)
             GPIO.output(led_pins['green_indicator'], GPIO.LOW)
