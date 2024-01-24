@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import random
 import threading
+import os
 
 
 led_pins = {'white1': 4, 'white2': 17, 'blue1': 27, 'blue2': 5,
@@ -107,27 +108,30 @@ indicator_thread = None
 try:
     while True:
         if GPIO.input(start_button_pin) == GPIO.LOW:
+            time.sleep(3)
             game_running = True
             start_time = time.time()
             indicator_thread = threading.Thread(target=blink_indicator)
             indicator_thread.start()
             while game_running and time.time() - start_time < 120:
                 game_round()
-                time.sleep(4)
+                time.sleep(2)
                 questions_answered += 1
 
+                print(questions_answered, "-", questions_limit)
                 if questions_answered == questions_limit:
                     display_number_in_morse('69')
                     time.sleep(5)
-                    GPIO.output(led_pins['green2'], GPIO.HIGH)
-                    GPIO.output(led_pins['yellow2'], GPIO.HIGH)
-                    GPIO.output(led_pins['red2'], GPIO.HIGH)
+
+
+                    for led_pin in led_pins.values():
+                        GPIO.output(led_pin, GPIO.HIGH)
                     time.sleep(5)
-                    GPIO.output(led_pins['green2'], GPIO.LOW)
-                    GPIO.output(led_pins['yellow2'], GPIO.LOW)
-                    GPIO.output(led_pins['red2'], GPIO.LOW)
-                    questions_answered = 0
-                    break
+
+                    for led_pin in led_pins.values():
+                        GPIO.output(led_pin, GPIO.LOW)
+
+                    os.system("sudo shutdown now")
 
             game_running = False
             if indicator_thread is not None:
@@ -136,9 +140,6 @@ try:
             display_number_in_morse('69')
             time.sleep(5)
 
-            GPIO.output(led_pins['green_indicator'], GPIO.HIGH)
-            time.sleep(1)
-            GPIO.output(led_pins['green_indicator'], GPIO.LOW)
             play_buzzer(1)
 
 except KeyboardInterrupt:
