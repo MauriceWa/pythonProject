@@ -5,6 +5,18 @@
             "name": "CompTIA A+",
             "total_lessons": 147,
             "completed_lessons": 32
+        },
+        {
+            "id": "a26c6ccd-a672-48a3-8783-6315b46a02d1",
+            "name": "CompTIA Network+",
+            "total_lessons": 999,
+            "completed_lessons": 0
+        },
+        {
+            "id": "424032c2-c1aa-48cd-a1d0-4cb1c4e097c2",
+            "name": "CompTIA Security+",
+            "total_lessons": 999,
+            "completed_lessons": 0
         }
     ]
 }
