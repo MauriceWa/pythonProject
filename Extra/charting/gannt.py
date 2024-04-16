@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.patches as mpatches
-from datetime import datetime
+from datetime import datetime, timedelta
 import pandas as pd
+
 
 data = [
     ("Aanmaak en overleg groep", "2023-12-05", "2023-12-05", "Ja", 2),
@@ -25,9 +26,9 @@ data = [
 tasks = [{
     'Task': row[0],
     'Start': datetime.strptime(row[1], '%Y-%m-%d'),
-    'Finish': datetime.strptime(row[2], '%Y-%m-%d'),
+    'Finish': datetime.strptime(row[1], '%Y-%m-%d') + timedelta(hours=row[4]),
     'Resource': row[3],
-    'Completion': row[4]
+    'Hours': row[4]
 } for row in data]
 
 df = pd.DataFrame(tasks)
