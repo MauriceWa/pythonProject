@@ -1,0 +1,142 @@
+:root {
+    --text-color: #fdfdfd;
+    --main-bg-color: #a9353f;
+    --nav-bg-color: #000;
+    --top-text-bg-color: #8a010b;
+    --button-bg-color: #fdfdfd;
+    --button-bg-hover-color: #c9302c;
+    --footer-bg-color: #aa353f;
+    --box-shadow-color: rgba(0,0,0,0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--main-bg-color);
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.main-navigation {
+    box-shadow: 0 2px 5px var(--box-shadow-color);
+    background: var(--nav-bg-color);
+}
+
+.main-navigation ul {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.main-navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+
+.main-navigation a.nav-item
+{
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.main-navigation ul li a:hover,
+.touch:hover {
+    background-color: var(--button-bg-hover-color);
+}
+
+.top-text {
+    background: var(--top-text-bg-color);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.main-title {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.description,
+h1, p, footer {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.touch {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background: var(--button-bg-color);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--box-shadow-color);
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+footer {
+    background: var(--footer-bg-color);
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .main-navigation ul {
+        text-align: center;
+    }
+
+    .main-navigation ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .touch {
+        width: auto;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+
+    .touch {
+        padding: 10px;
+    }
+}
